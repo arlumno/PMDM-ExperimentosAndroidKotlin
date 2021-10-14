@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 
 class CalculadoraActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,6 +32,10 @@ class CalculadoraActivity : AppCompatActivity() {
         val calcMultiplicar = findViewById<Button>(R.id.calcMultiplicar)
         val calcIgual = findViewById<Button>(R.id.calcIgual)
         val calcDisplay = findViewById<TextView>(R.id.calcDisplay)
+        var operador1:Int = 0
+        var operador2:Int = 0
+        var operacion:String = ""
+        var resultado:Long
 
         calc0.setOnClickListener {
             if(numeroDisplay != 0){
@@ -84,12 +89,33 @@ class CalculadoraActivity : AppCompatActivity() {
             calcDisplay.setText(numeroDisplay.toString())
         }
         findViewById<Button>(R.id.calcClear).setOnClickListener{
+            numeroDisplay = 0
             calcDisplay.setText("0")
+        }
+        findViewById<Button>(R.id.calcSumar).setOnClickListener{
+//            operador1 = numeroDisplay
+//            numeroDisplay = 0
+//            calcDisplay.setText(0)
+//            operacion = "sumar"
+            Toast.makeText(this.applicationContext, "Sumando", Toast.LENGTH_SHORT).show()
+        }
+        findViewById<Button>(R.id.calcIgual).setOnClickListener{
+            operador2 = numeroDisplay
+            when (operacion){
+                "sumar" -> calcDisplay.setText(operador1+operador2);
+            }
+            operador1 = 0
+            operador2 = 0
+
         }
 
     }
 
     fun addNumero(numero: Int, numeroDisplay: Int): Int {
-        return numeroDisplay * 10 + numero
+        var resultado: Long = numeroDisplay.toLong() * 10 + numero;
+        if(resultado.toString().length  > 8){
+            resultado = numeroDisplay.toLong();
+        }
+        return resultado.toInt();
     }
 }
