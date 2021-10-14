@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#434343"
+    tools:context=".CalculadoraActivity">
+
+    <Button
+        android:id="@+id/calc7"
+        android:layout_width="48dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="8dp"
+        android:text="7"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/calc4"
+        app:layout_constraintTop_toBottomOf="@+id/calc4" />
+
+    <Button
+        android:id="@+id/calc0"
+        android:layout_width="48dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="8dp"
+        android:text="0"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/calc7"
+        app:layout_constraintTop_toBottomOf="@+id/calc7" />
+
+    <Button
+        android:id="@+id/calcPunto"
+        android:layout_width="48dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="."
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/calc0"
+        app:layout_constraintTop_toBottomOf="@+id/calc8" />
+
+    <Button
+        android:id="@+id/calcClear"
+        android:layout_width="48dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:text="CE"
+        android:textAlignment="viewStart"
+        android:textSize="10sp"
+        app:iconPadding="0dp"
+        app:layout_constraintStart_toEndOf="@+id/calcPunto"
+        app:layout_constraintTop_toBottomOf="@+id/calc9" />
+
+    <Button
+        android:id="@+id/calcMultiplicar"
+        android:layout_width="48dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="8dp"
+        android:text="x"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/calc3"
+        app:layout_constraintTop_toTopOf="@+id/calc1" />
+
+    <Button
+        android:id="@+id/calcSumar"
+        android:layout_width="48dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="8dp"
+        android:text="+"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/calcMultiplicar"
+        app:layout_constraintTop_toBottomOf="@+id/calcMultiplicar" />
+
+    <Button
+        android:id="@+id/calcRestar"
+        android:layout_width="48dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="-"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/calcSumar"
+        app:layout_constraintTop_toBottomOf="@+id/calcDividir" />
+
+    <Button
+        android:id="@+id/calcDividir"
+        android:layout_width="48dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="8dp"
+        android:text="/"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/calcMultiplicar"
+        app:layout_constraintTop_toTopOf="@+id/calc1" />
+
+    <Button
+        android:id="@+id/calcIgual"
+        android:layout_width="104dp"
+        android:layout_height="53dp"
+        android:text="="
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/calcPunto"
+        app:layout_constraintEnd_toEndOf="@+id/calcDividir" />
+
+    <Button
+        android:id="@+id/calcSalir"
+        android:layout_width="130dp"
+        android:layout_height="65dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Volver"
+        android:textAlignment="center"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/calc8"
+        android:layout_width="48dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="8dp"
+        android:text="8"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/calc7"
+        app:layout_constraintTop_toTopOf="@+id/calc7" />
+
+    <Button
+        android:id="@+id/calc9"
+        android:layout_width="48dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="8dp"
+        android:text="9"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/calc8"
+        app:layout_constraintTop_toTopOf="@+id/calc8" />
+
+    <Button
+        android:id="@+id/calc5"
+        android:layout_width="48dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="8dp"
+        android:text="5"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/calc4"
+        app:layout_constraintTop_toTopOf="@+id/calc4" />
+
+    <Button
+        android:id="@+id/calc6"
+        android:layout_width="48dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="8dp"
+        android:text="6"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/calc5"
+        app:layout_constraintTop_toTopOf="@+id/calc5" />
+
+    <Button
+        android:id="@+id/calc1"
+        android:layout_width="48dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="50dp"
+        android:text="1"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/calcDisplay"
+        app:layout_constraintTop_toBottomOf="@+id/calcDisplay"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/calc2"
+        android:layout_width="48dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="8dp"
+        android:text="2"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/calc1"
+        app:layout_constraintTop_toTopOf="@+id/calc1" />
+
+    <Button
+        android:id="@+id/calc3"
+        android:layout_width="48dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="8dp"
+        android:text="3"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/calc2"
+        app:layout_constraintTop_toTopOf="@+id/calc2" />
+
+    <Button
+        android:id="@+id/calc4"
+        android:layout_width="48dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="8dp"
+        android:text="4"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/calc1"
+        app:layout_constraintTop_toBottomOf="@+id/calc1" />
+
+    <TextView
+        android:id="@+id/calcDisplay"
+        android:layout_width="312dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="60dp"
+        android:background="#4CAF50"
+        android:text="0000000"
+        android:textAlignment="textEnd"
+        android:textSize="48sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.484"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
