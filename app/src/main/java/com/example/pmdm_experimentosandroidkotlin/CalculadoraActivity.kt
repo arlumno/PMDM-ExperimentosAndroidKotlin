@@ -3,119 +3,181 @@ package com.example.pmdm_experimentosandroidkotlin
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import com.example.pmdm_experimentosandroidkotlin.databinding.ActivityCalculadoraBinding
+import kotlin.math.log
 
 class CalculadoraActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityCalculadoraBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_calculadora)
 
-        val calcSalir = findViewById<Button>(R.id.calcSalir)
+        binding = ActivityCalculadoraBinding.inflate(layoutInflater)
 
+        setContentView(binding.root)
 
-        var numeroDisplay = 0
         // declaramos botones
-        val calc0 = findViewById<Button>(R.id.calc0)
-        val calc1 = findViewById<Button>(R.id.calc1)
-        val calc2 = findViewById<Button>(R.id.calc2)
-        val calc3 = findViewById<Button>(R.id.calc3)
-        val calc4 = findViewById<Button>(R.id.calc4)
-        val calc5 = findViewById<Button>(R.id.calc5)
-        val calc6 = findViewById<Button>(R.id.calc6)
-        val calc7 = findViewById<Button>(R.id.calc7)
-        val calc8 = findViewById<Button>(R.id.calc8)
-        val calc9 = findViewById<Button>(R.id.calc9)
 
-        val calcDividir = findViewById<Button>(R.id.calcDividir)
-        val calcMultiplicar = findViewById<Button>(R.id.calcMultiplicar)
-        val calcIgual = findViewById<Button>(R.id.calcIgual)
-        val calcDisplay = findViewById<TextView>(R.id.calcDisplay)
-        var operador1:Int = 0
-        var operador2:Int = 0
-        var operacion:String = ""
-        var resultado:Long
+        val calculadora = Calculadora();
+        //reseteamos valores del layout
+        pushButton(calculadora)
 
-        calc0.setOnClickListener {
-            if(numeroDisplay != 0){
-                numeroDisplay = addNumero(0, numeroDisplay)
-                calcDisplay.setText(numeroDisplay.toString())
-            }
+        // botones de 0 al 9
+        binding.calc0.setOnClickListener {
+            calculadora.pushNumero(0)
+            pushButton(calculadora)
         }
 
-        calc1.setOnClickListener {
-            numeroDisplay = addNumero(1, numeroDisplay)
-            calcDisplay.setText(numeroDisplay.toString())
+        binding.calc1.setOnClickListener {
+            calculadora.pushNumero(1)
+            pushButton(calculadora)
         }
 
-        calc2.setOnClickListener {
-            numeroDisplay = addNumero(2, numeroDisplay)
-            calcDisplay.setText(numeroDisplay.toString())
+        binding.calc2.setOnClickListener {
+            calculadora.pushNumero(2)
+            pushButton(calculadora)
         }
 
-        calc3.setOnClickListener {
-            numeroDisplay = addNumero(3, numeroDisplay)
-            calcDisplay.setText(numeroDisplay.toString())
+        binding.calc3.setOnClickListener {
+            calculadora.pushNumero(3)
+            pushButton(calculadora)
         }
 
-        calc4.setOnClickListener {
-            numeroDisplay = addNumero(4, numeroDisplay)
-            calcDisplay.setText(numeroDisplay.toString())
+        binding.calc4.setOnClickListener {
+            calculadora.pushNumero(4)
+            pushButton(calculadora)
         }
 
-        calc5.setOnClickListener {
-            numeroDisplay = addNumero(5, numeroDisplay)
-            calcDisplay.setText(numeroDisplay.toString())
+        binding.calc5.setOnClickListener {
+            calculadora.pushNumero(5)
+            pushButton(calculadora)
         }
 
-        calc6.setOnClickListener {
-            numeroDisplay = addNumero(6, numeroDisplay)
-            calcDisplay.setText(numeroDisplay.toString())
+        binding.calc6.setOnClickListener {
+            calculadora.pushNumero(6)
+            pushButton(calculadora)
         }
 
-        calc7.setOnClickListener {
-            numeroDisplay = addNumero(7, numeroDisplay)
-            calcDisplay.setText(numeroDisplay.toString())
+        binding.calc7.setOnClickListener {
+            calculadora.pushNumero(7)
+            pushButton(calculadora)
         }
 
-        calc8.setOnClickListener {
-            numeroDisplay = addNumero(8, numeroDisplay)
-            calcDisplay.setText(numeroDisplay.toString())
+        binding.calc8.setOnClickListener {
+            calculadora.pushNumero(8)
+            pushButton(calculadora)
         }
 
-        calc9.setOnClickListener {
-            numeroDisplay = addNumero(9, numeroDisplay)
-            calcDisplay.setText(numeroDisplay.toString())
+        binding.calc9.setOnClickListener {
+            calculadora.pushNumero(9)
+            pushButton(calculadora)
         }
-        findViewById<Button>(R.id.calcClear).setOnClickListener{
-            numeroDisplay = 0
-            calcDisplay.setText("0")
-        }
-        findViewById<Button>(R.id.calcSumar).setOnClickListener{
-//            operador1 = numeroDisplay
-//            numeroDisplay = 0
-//            calcDisplay.setText(0)
-//            operacion = "sumar"
-            Toast.makeText(this.applicationContext, "Sumando", Toast.LENGTH_SHORT).show()
-        }
-        findViewById<Button>(R.id.calcIgual).setOnClickListener{
-            operador2 = numeroDisplay
-            when (operacion){
-                "sumar" -> calcDisplay.setText(operador1+operador2);
-            }
-            operador1 = 0
-            operador2 = 0
 
+        // operaciones
+        binding.calcSumar.setOnClickListener {
+            calculadora.pushOperacion("+")
+            pushButton(calculadora)
+        }
+        binding.calcRestar.setOnClickListener {
+            calculadora.pushOperacion("-")
+            pushButton(calculadora)
+        }
+        binding.calcDividir.setOnClickListener {
+            calculadora.pushOperacion("/")
+            pushButton(calculadora)
+        }
+        binding.calcMultiplicar.setOnClickListener {
+            calculadora.pushOperacion("X")
+            pushButton(calculadora)
+        }
+
+        //varios
+        binding.calcIgual.setOnClickListener {
+            calculadora.pushIgual()
+            pushButton(calculadora)
+        }
+        binding.calcClear.setOnClickListener {
+            calculadora.pushClear()
+            pushButton(calculadora)
+        }
+
+        binding.calcPunto.setOnClickListener {
+            Toast.makeText(this,"nada de decimales, de momento  es una liada...",Toast.LENGTH_SHORT).show()
         }
 
     }
-
+    fun pushButton(calculadora : Calculadora) {
+        Log.d("::::Ar","pushButton")
+        binding.calcDisplay.setText(calculadora.numeroDisplay())
+        binding.calcDisplayOp.setText(calculadora.operacion)
+    }
     fun addNumero(numero: Int, numeroDisplay: Int): Int {
         var resultado: Long = numeroDisplay.toLong() * 10 + numero;
-        if(resultado.toString().length  > 8){
+        if (resultado.toString().length > 8) {
             resultado = numeroDisplay.toLong();
         }
         return resultado.toInt();
+    }
+}
+
+class Calculadora {
+    var numero1: Int = 0
+    var numero2: Int = 0
+    var operacion: String = ""
+    var resultado: Long = 0
+    val maxDigitos = 9
+    var decimales = false
+
+    fun pushNumero(numero: Int) {
+        Log.d("::::Ar","pushNumero numero: $numero")
+        var digitos:Int
+//        if(decimales){
+//            digitos = maxDigitos + 1
+//        }else{
+//            digitos = maxDigitos
+//        }
+
+        if (numero1.toString().length < maxDigitos) {
+            resultado = resultado * 10 + numero
+            numero1 =  resultado.toInt();
+        }
+        Log.d("::::Ar","pushNumero display $numero1")
+    }
+    fun pushPunto(){
+
+    }
+    fun pushOperacion(operacionIn: String) {
+        if(operacion == ""){
+            numero2 = numero1
+            numero1 = 0
+        }
+        operacion = operacionIn
+
+    }
+    fun numeroDisplay(): String{
+        return numero1.toString()
+    }
+    fun pushClear() {
+        this.numero1 = 0
+        this.numero2 = 0
+        this.operacion = ""
+    }
+
+    fun pushIgual() {
+        var resultado:Long = 0
+        when (operacion) {
+            "+" -> resultado = numero1.toLong() + numero2
+            "-" -> resultado = numero2.toLong() + numero1
+            "X" -> resultado = numero2.toLong() * numero1
+            "/" -> resultado = numero2.toLong() / numero1
+        }
+        pushClear()
+        numero1 = resultado.toInt()
     }
 }
