@@ -25,6 +25,7 @@ class CalculadoraActivity : AppCompatActivity() {
         // declaramos botones
 
         val calculadora = Calculadora();
+        calculadora.pushClear()
         //reseteamos valores del layout
         pushButton(calculadora)
 
@@ -108,7 +109,7 @@ class CalculadoraActivity : AppCompatActivity() {
         }
 
         binding.calcPunto.setOnClickListener {
-            Toast.makeText(this,"nada de decimales, de momento  es una liada...",Toast.LENGTH_SHORT).show()
+            Toast.makeText(this,"nada de decimales, de momento es una liada,Not Today...",Toast.LENGTH_SHORT).show()
         }
 
     }
@@ -127,21 +128,16 @@ class CalculadoraActivity : AppCompatActivity() {
 }
 
 class Calculadora {
-    var numero1: Int = 0
+    var numero1: Int? = 0
     var numero2: Int = 0
     var operacion: String = ""
-    var resultado: Long = 0
+
     val maxDigitos = 9
-    var decimales = false
 
     fun pushNumero(numero: Int) {
+        var resultado: Long = 0
         Log.d("::::Ar","pushNumero numero: $numero")
         var digitos:Int
-//        if(decimales){
-//            digitos = maxDigitos + 1
-//        }else{
-//            digitos = maxDigitos
-//        }
 
         if (numero1.toString().length < maxDigitos) {
             resultado = resultado * 10 + numero
@@ -152,17 +148,21 @@ class Calculadora {
     fun pushPunto(){
 
     }
+
     fun pushOperacion(operacionIn: String) {
-        if(operacion == ""){
-            numero2 = numero1
-            numero1 = 0
-        }
+//        if(operacion == ""){
+            numero2 = numero1 ?: 0
+            numero1 = null
+//        }
         operacion = operacionIn
 
     }
+
+
     fun numeroDisplay(): String{
-        return numero1.toString()
+        return numero1?.toString() ?: numero2.toString()
     }
+
     fun pushClear() {
         this.numero1 = 0
         this.numero2 = 0
@@ -172,10 +172,10 @@ class Calculadora {
     fun pushIgual() {
         var resultado:Long = 0
         when (operacion) {
-            "+" -> resultado = numero1.toLong() + numero2
-            "-" -> resultado = numero2.toLong() + numero1
-            "X" -> resultado = numero2.toLong() * numero1
-            "/" -> resultado = numero2.toLong() / numero1
+            "+" -> resultado = (numero1?.toLong() ?: 0) + numero2
+            "-" -> resultado = numero2.toLong() + (numero1?:0)
+            "X" -> resultado = numero2.toLong() * (numero1?:0)
+            "/" -> resultado = numero2.toLong() / (numero1?:0)
         }
         pushClear()
         numero1 = resultado.toInt()
