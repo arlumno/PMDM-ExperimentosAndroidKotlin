@@ -27,157 +27,174 @@ class CalculadoraActivity : AppCompatActivity() {
         val calculadora = Calculadora();
         calculadora.pushClear()
         //reseteamos valores del layout
-        pushButton(calculadora)
+        actualizarDisplays(calculadora)
 
         // botones de 0 al 9
         binding.calc0.setOnClickListener {
             calculadora.pushNumero(0)
-            pushButton(calculadora)
+            actualizarDisplays(calculadora)
         }
 
         binding.calc1.setOnClickListener {
             calculadora.pushNumero(1)
-            pushButton(calculadora)
+            actualizarDisplays(calculadora)
         }
 
         binding.calc2.setOnClickListener {
             calculadora.pushNumero(2)
-            pushButton(calculadora)
+            actualizarDisplays(calculadora)
         }
 
         binding.calc3.setOnClickListener {
             calculadora.pushNumero(3)
-            pushButton(calculadora)
+            actualizarDisplays(calculadora)
         }
 
         binding.calc4.setOnClickListener {
             calculadora.pushNumero(4)
-            pushButton(calculadora)
+            actualizarDisplays(calculadora)
         }
 
         binding.calc5.setOnClickListener {
             calculadora.pushNumero(5)
-            pushButton(calculadora)
+            actualizarDisplays(calculadora)
         }
 
         binding.calc6.setOnClickListener {
             calculadora.pushNumero(6)
-            pushButton(calculadora)
+            actualizarDisplays(calculadora)
         }
 
         binding.calc7.setOnClickListener {
             calculadora.pushNumero(7)
-            pushButton(calculadora)
+            actualizarDisplays(calculadora)
         }
 
         binding.calc8.setOnClickListener {
             calculadora.pushNumero(8)
-            pushButton(calculadora)
+            actualizarDisplays(calculadora)
         }
 
         binding.calc9.setOnClickListener {
             calculadora.pushNumero(9)
-            pushButton(calculadora)
+            actualizarDisplays(calculadora)
         }
 
         // operaciones
         binding.calcSumar.setOnClickListener {
             calculadora.pushOperacion("+")
-            pushButton(calculadora)
+            actualizarDisplays(calculadora)
         }
         binding.calcRestar.setOnClickListener {
             calculadora.pushOperacion("-")
-            pushButton(calculadora)
+            actualizarDisplays(calculadora)
         }
         binding.calcDividir.setOnClickListener {
             calculadora.pushOperacion("/")
-            pushButton(calculadora)
+            actualizarDisplays(calculadora)
         }
         binding.calcMultiplicar.setOnClickListener {
             calculadora.pushOperacion("X")
-            pushButton(calculadora)
+            actualizarDisplays(calculadora)
         }
 
         //varios
         binding.calcIgual.setOnClickListener {
             calculadora.pushIgual()
-            pushButton(calculadora)
+            actualizarDisplays(calculadora)
         }
         binding.calcClear.setOnClickListener {
             calculadora.pushClear()
-            pushButton(calculadora)
+            actualizarDisplays(calculadora)
         }
 
         binding.calcPunto.setOnClickListener {
-            Toast.makeText(this,"nada de decimales, de momento es una liada,Not Today...",Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                this,
+                "nada de decimales, de momento es una liada,Not Today...",
+                Toast.LENGTH_SHORT
+            ).show()
         }
 
     }
-    fun pushButton(calculadora : Calculadora) {
-        Log.d("::::Ar","pushButton")
-        binding.calcDisplay.setText(calculadora.numeroDisplay())
-        binding.calcDisplayOp.setText(calculadora.operacion)
+
+    fun actualizarDisplays(calculadora: Calculadora) {
+        Log.d("::::Ar", "actualizarDisplays")
+        binding.calcDisplay.setText(calculadora.textDisplay)
+        binding.calcDisplayMin.setText(calculadora.textDisplayMin)
+        binding.calcDisplayOp.setText(calculadora.textOperacion)
     }
+
     fun addNumero(numero: Int, numeroDisplay: Int): Int {
-        var resultado: Long = numeroDisplay.toLong() * 10 + numero;
-        if (resultado.toString().length > 8) {
-            resultado = numeroDisplay.toLong();
+        var resultadoOperacion: Long = numeroDisplay.toLong() * 10 + numero;
+        if (resultadoOperacion.toString().length > 8) {
+            resultadoOperacion = numeroDisplay.toLong();
         }
-        return resultado.toInt();
+        return resultadoOperacion.toInt();
     }
 }
 
 class Calculadora {
-    var numero1: Int? = 0
-    var numero2: Int = 0
+    var numeroActual: Long? = null
+    var numeroAnterior: Long? = null
     var operacion: String = ""
-
+    var resultadoUltimaOperacion: String? = null
     val maxDigitos = 9
 
-    fun pushNumero(numero: Int) {
-        var resultado: Long = 0
-        Log.d("::::Ar","pushNumero numero: $numero")
-        var digitos:Int
+    val textDisplay: String
+        get() = numeroActual?.toString() ?: numeroAnterior?.toString()?: resultadoUltimaOperacion ?: "0"
 
-        if (numero1.toString().length < maxDigitos) {
-            resultado = resultado * 10 + numero
-            numero1 =  resultado.toInt();
+    val textDisplayMin: String
+        get() = numeroAnterior?.toString() ?: ""
+
+    val textOperacion: String
+        get() = operacion
+
+
+    fun pushNumero(numeroPulsado: Int) {
+        Log.d("::::Ar", "pushNumero numero: $numeroPulsado")
+        if ((numeroActual ?: 0).toString().length < maxDigitos) numeroActual = (numeroActual ?: 0) * 10 + numeroPulsado.toLong()
+        Log.d("::::Ar", "pushNumero display $numeroActual")
+    }
+
+    fun pushPunto() {
+
+    }
+
+    fun pushOperacion(operacionPulsada: String) {
+        if(numeroAnterior == null){
+            numeroActual.let {
+                numeroAnterior = numeroActual
+                numeroActual = null
+            }
         }
-        Log.d("::::Ar","pushNumero display $numero1")
-    }
-    fun pushPunto(){
+        numeroActual = null
+        operacion = operacionPulsada
 
     }
 
-    fun pushOperacion(operacionIn: String) {
-//        if(operacion == ""){
-            numero2 = numero1 ?: 0
-            numero1 = null
-//        }
-        operacion = operacionIn
-
-    }
-
-
-    fun numeroDisplay(): String{
-        return numero1?.toString() ?: numero2.toString()
-    }
 
     fun pushClear() {
-        this.numero1 = 0
-        this.numero2 = 0
-        this.operacion = ""
+        numeroActual = null
+        numeroAnterior = null
+        resultadoUltimaOperacion = null
+        operacion = ""
     }
 
     fun pushIgual() {
-        var resultado:Long = 0
-        when (operacion) {
-            "+" -> resultado = (numero1?.toLong() ?: 0) + numero2
-            "-" -> resultado = numero2.toLong() + (numero1?:0)
-            "X" -> resultado = numero2.toLong() * (numero1?:0)
-            "/" -> resultado = numero2.toLong() / (numero1?:0)
+        var resultadoOperacion: Long = 0
+        if (numeroActual != null && numeroAnterior != null){
+            when (operacion) {
+                "+" -> resultadoOperacion = numeroAnterior!! + numeroActual!!
+                "-" -> resultadoOperacion = numeroAnterior!! - numeroActual!!
+                "X" -> resultadoOperacion = numeroAnterior!! * numeroActual!!
+                "/" ->{
+                    if(numeroActual != 0L)  resultadoOperacion = numeroAnterior!! / numeroActual!!
+                }
+            }
         }
         pushClear()
-        numero1 = resultado.toInt()
+        numeroAnterior = resultadoOperacion
+        resultadoUltimaOperacion = resultadoOperacion.toString()
     }
 }

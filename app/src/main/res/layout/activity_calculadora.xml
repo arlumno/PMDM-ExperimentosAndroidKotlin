@@ -246,13 +246,26 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/calcDisplayMin"
+        android:layout_width="157dp"
+        android:layout_height="17dp"
+        android:background="#4CAF50"
+        android:text="1234568"
+        android:textAlignment="textEnd"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/calcDisplayOp"
+        app:layout_constraintEnd_toStartOf="@+id/calcDisplayOp"
+        app:layout_constraintTop_toTopOf="@+id/calcDisplay" />
+
+    <TextView
         android:id="@+id/calcDisplayOp"
-        android:layout_width="36dp"
-        android:layout_height="16dp"
+        android:layout_width="22dp"
+        android:layout_height="17dp"
         android:layout_marginEnd="8dp"
         android:background="#4CAF50"
         android:text="X"
-        android:textAlignment="center"
+        android:textAlignment="textEnd"
         android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/calcDisplay"
