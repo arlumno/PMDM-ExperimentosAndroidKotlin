@@ -82,19 +82,19 @@ class CalculadoraActivity : AppCompatActivity() {
 
         // operaciones
         binding.calcSumar.setOnClickListener {
-            calculadora.pushOperacion("+")
+            calculadora.pushTipoOperacion("+")
             actualizarDisplays(calculadora)
         }
         binding.calcRestar.setOnClickListener {
-            calculadora.pushOperacion("-")
+            calculadora.pushTipoOperacion("-")
             actualizarDisplays(calculadora)
         }
         binding.calcDividir.setOnClickListener {
-            calculadora.pushOperacion("/")
+            calculadora.pushTipoOperacion("/")
             actualizarDisplays(calculadora)
         }
         binding.calcMultiplicar.setOnClickListener {
-            calculadora.pushOperacion("X")
+            calculadora.pushTipoOperacion("X")
             actualizarDisplays(calculadora)
         }
 
@@ -122,79 +122,8 @@ class CalculadoraActivity : AppCompatActivity() {
         Log.d("::::Ar", "actualizarDisplays")
         binding.calcDisplay.setText(calculadora.textDisplay)
         binding.calcDisplayMin.setText(calculadora.textDisplayMin)
-        binding.calcDisplayOp.setText(calculadora.textOperacion)
+        binding.calcDisplayOp.setText(calculadora.textTipoOperacion)
     }
 
-    fun addNumero(numero: Int, numeroDisplay: Int): Int {
-        var resultadoOperacion: Long = numeroDisplay.toLong() * 10 + numero;
-        if (resultadoOperacion.toString().length > 8) {
-            resultadoOperacion = numeroDisplay.toLong();
-        }
-        return resultadoOperacion.toInt();
-    }
 }
 
-class Calculadora {
-    var numeroActual: Long? = null
-    var numeroAnterior: Long? = null
-    var operacion: String = ""
-    var resultadoUltimaOperacion: String? = null
-    val maxDigitos = 9
-
-    val textDisplay: String
-        get() = numeroActual?.toString() ?: numeroAnterior?.toString()?: resultadoUltimaOperacion ?: "0"
-
-    val textDisplayMin: String
-        get() = numeroAnterior?.toString() ?: ""
-
-    val textOperacion: String
-        get() = operacion
-
-
-    fun pushNumero(numeroPulsado: Int) {
-        Log.d("::::Ar", "pushNumero numero: $numeroPulsado")
-        if ((numeroActual ?: 0).toString().length < maxDigitos) numeroActual = (numeroActual ?: 0) * 10 + numeroPulsado.toLong()
-        Log.d("::::Ar", "pushNumero display $numeroActual")
-    }
-
-    fun pushPunto() {
-
-    }
-
-    fun pushOperacion(operacionPulsada: String) {
-        if(numeroAnterior == null){
-            numeroActual.let {
-                numeroAnterior = numeroActual
-                numeroActual = null
-            }
-        }
-        numeroActual = null
-        operacion = operacionPulsada
-
-    }
-
-
-    fun pushClear() {
-        numeroActual = null
-        numeroAnterior = null
-        resultadoUltimaOperacion = null
-        operacion = ""
-    }
-
-    fun pushIgual() {
-        var resultadoOperacion: Long = 0
-        if (numeroActual != null && numeroAnterior != null){
-            when (operacion) {
-                "+" -> resultadoOperacion = numeroAnterior!! + numeroActual!!
-                "-" -> resultadoOperacion = numeroAnterior!! - numeroActual!!
-                "X" -> resultadoOperacion = numeroAnterior!! * numeroActual!!
-                "/" ->{
-                    if(numeroActual != 0L)  resultadoOperacion = numeroAnterior!! / numeroActual!!
-                }
-            }
-        }
-        pushClear()
-        numeroAnterior = resultadoOperacion
-        resultadoUltimaOperacion = resultadoOperacion.toString()
-    }
-}
