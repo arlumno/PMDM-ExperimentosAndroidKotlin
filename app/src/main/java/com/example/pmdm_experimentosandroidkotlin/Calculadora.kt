@@ -5,6 +5,7 @@ import android.util.Log
 class Calculadora {
     var numeroActual: Long = 0
     var numeroAnterior: Long = 0
+    var resultadoOperacion: Long? = null
     var tipoOperacion: String = ""
     val maxDigitos = 9
 
@@ -16,19 +17,43 @@ class Calculadora {
     fun pushNumero(numeroPulsado: Int) {
         if (numeroActual.toString().length < maxDigitos) numeroActual =
             numeroActual * 10 + numeroPulsado.toLong()
-        textDisplay = numeroActual as String
-        Log.d("::::Ar", "pushNumero $numeroPulsado numeroActual: $numeroActual")
+        textDisplay = numeroActual.toString()
+        resultadoOperacion?.let { resultadoOperacion = null }
+
+        Log.d("::::Ar", "pushNumero() -> numeroActual $numeroActual numeroAnterior: $numeroAnterior  resultadoOperacion $resultadoOperacion?")
     }
 
     fun pushPunto() {
-
     }
 
+    fun pushDel() {
+        numeroActual = numeroActual / 10
+        textDisplay = numeroActual.toString()
+    }
     fun pushTipoOperacion(tipoOperacionPulsada: String) {
+
+        if (tipoOperacion == "") {
+            resultadoOperacion?.let {
+                numeroAnterior = it
+                resultadoOperacion = null
+            } ?: run {
+                numeroAnterior = numeroActual
+                numeroActual = 0
+            }
+            // en lugar de:
+//            if(resultadoOperacion != null) {
+//                numeroAnterior = resultadoOperacion!!
+//                resultadoOperacion = null
+//            } else {
+//                numeroAnterior = numeroActual
+//                numeroActual = 0
+//            }
+            Log.d("::::Ar", "pushTipoOperacion() -> numeroActual $numeroActual numeroAnterior: $numeroAnterior  resultadoOperacion $resultadoOperacion?")
+        }
+
         tipoOperacion = tipoOperacionPulsada
-        numeroAnterior = numeroActual
         textDisplayMin = "$numeroAnterior $tipoOperacion"
-        numeroActual = 0
+
     }
 
 
@@ -41,8 +66,9 @@ class Calculadora {
     }
 
     fun pushIgual() {
-        var resultadoOperacion: Long = 0
         var error = false
+        resultadoOperacion = null;
+
         when (tipoOperacion) {
             "+" -> resultadoOperacion = numeroAnterior + numeroActual
             "-" -> resultadoOperacion = numeroAnterior - numeroActual
@@ -55,14 +81,18 @@ class Calculadora {
             }
         }
         textDisplayMin = "$numeroAnterior $tipoOperacion $numeroActual = "
-        if (error){
+        if (error) {
             pushClear()
             textDisplay = "---ERROR---"
-        }else{
+        } else {
             pushClear()
-            textDisplay = resultadoOperacion as String
-            numeroAnterior = resultadoOperacion
+            resultadoOperacion?.let {
+                textDisplay = it.toString()
+                //numeroAnterior = it
+            }
 
         }
+        Log.d("::::Ar", "pushIgual() -> numeroActual $numeroActual numeroAnterior: $numeroAnterior  resultadoOperacion $resultadoOperacion")
+
     }
 }

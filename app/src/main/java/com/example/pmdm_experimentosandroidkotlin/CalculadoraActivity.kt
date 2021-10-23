@@ -107,6 +107,10 @@ class CalculadoraActivity : AppCompatActivity() {
             calculadora.pushClear()
             actualizarDisplays(calculadora)
         }
+        binding.calcDel.setOnClickListener {
+            calculadora.pushDel()
+            actualizarDisplays(calculadora)
+        }
 
         binding.calcPunto.setOnClickListener {
             Toast.makeText(
@@ -122,7 +126,7 @@ class CalculadoraActivity : AppCompatActivity() {
         Log.d("::::Ar", "actualizarDisplays")
         binding.calcDisplay.setText(calculadora.textDisplay)
         binding.calcDisplayMin.setText(calculadora.textDisplayMin)
-        binding.calcDisplayOp.setText(calculadora.textTipoOperacion)
+        //binding.calcDisplayOp.setText(calculadora.textTipoOperacion)
     }
 
 }

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="botonCalculadora">
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_weight">2</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_margin">3dp</item>
+        <item name="android:background">#FF7DABE3</item>
+        <item name="android:gravity">center_vertical|right</item>
+        <item name="android:textColor">#FF151515</item>
+    </style>
+
+    <style name="botonCalculadoraDimS" parent="botonCalculadora">
+        <item name="android:layout_height">25dp</item>
+
+    </style>
+
+    <style name="linearColumna">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_gravity">left</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+</resources>
