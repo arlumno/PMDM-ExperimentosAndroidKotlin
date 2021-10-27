@@ -15,6 +15,8 @@ class CalculadoraActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCalculadoraBinding
 
+    val calculadora = Calculadora();
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -22,112 +24,111 @@ class CalculadoraActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
-        // declaramos botones
 
-        val calculadora = Calculadora();
         calculadora.pushClear()
-        //reseteamos valores del layout
-        actualizarDisplays(calculadora)
+        //reseteamos valores del layout a los de la calculadora
+        actualizarDisplays()
 
         // botones de 0 al 9
         binding.calc0.setOnClickListener {
-            calculadora.pushNumero(0)
-            actualizarDisplays(calculadora)
+            pushButton(0)
         }
 
         binding.calc1.setOnClickListener {
-            calculadora.pushNumero(1)
-            actualizarDisplays(calculadora)
+            pushButton(1)
         }
 
         binding.calc2.setOnClickListener {
-            calculadora.pushNumero(2)
-            actualizarDisplays(calculadora)
+            pushButton(2)
         }
 
         binding.calc3.setOnClickListener {
-            calculadora.pushNumero(3)
-            actualizarDisplays(calculadora)
+            pushButton(3)
         }
 
         binding.calc4.setOnClickListener {
-            calculadora.pushNumero(4)
-            actualizarDisplays(calculadora)
+            pushButton(4)
         }
 
         binding.calc5.setOnClickListener {
-            calculadora.pushNumero(5)
-            actualizarDisplays(calculadora)
+            pushButton(5)
         }
 
         binding.calc6.setOnClickListener {
-            calculadora.pushNumero(6)
-            actualizarDisplays(calculadora)
+            pushButton(6)
         }
 
         binding.calc7.setOnClickListener {
-            calculadora.pushNumero(7)
-            actualizarDisplays(calculadora)
+            pushButton(7)
         }
 
         binding.calc8.setOnClickListener {
-            calculadora.pushNumero(8)
-            actualizarDisplays(calculadora)
+            pushButton(8)
         }
 
         binding.calc9.setOnClickListener {
-            calculadora.pushNumero(9)
-            actualizarDisplays(calculadora)
+            pushButton(9)
         }
 
         // operaciones
         binding.calcSumar.setOnClickListener {
             calculadora.pushTipoOperacion("+")
-            actualizarDisplays(calculadora)
+            actualizarDisplays()
         }
         binding.calcRestar.setOnClickListener {
             calculadora.pushTipoOperacion("-")
-            actualizarDisplays(calculadora)
+            actualizarDisplays()
         }
         binding.calcDividir.setOnClickListener {
             calculadora.pushTipoOperacion("/")
-            actualizarDisplays(calculadora)
+            actualizarDisplays()
         }
         binding.calcMultiplicar.setOnClickListener {
             calculadora.pushTipoOperacion("X")
-            actualizarDisplays(calculadora)
+            actualizarDisplays()
         }
 
         //varios
         binding.calcIgual.setOnClickListener {
             calculadora.pushIgual()
-            actualizarDisplays(calculadora)
+            actualizarDisplays()
         }
         binding.calcClear.setOnClickListener {
             calculadora.pushClear()
-            actualizarDisplays(calculadora)
+            actualizarDisplays()
         }
         binding.calcDel.setOnClickListener {
             calculadora.pushDel()
-            actualizarDisplays(calculadora)
+            actualizarDisplays()
         }
 
         binding.calcPunto.setOnClickListener {
             Toast.makeText(
                 this,
-                "nada de decimales, de momento es una liada,Not Today...",
+                "nada de decimales de momento, es una liada, Not Today...",
                 Toast.LENGTH_SHORT
             ).show()
         }
+        binding.calcSalir.setOnClickListener{
+            val intent = Intent(
+                this@CalculadoraActivity,  // https://kotlinlang.org/docs/this-expressions.html#qualified
+                MainActivity::class.java
+            )
+            startActivity(intent)
+        }
 
     }
-
-    fun actualizarDisplays(calculadora: Calculadora) {
+    fun pushButton(numero: Int){
+        calculadora.pushNumero(numero)
+        actualizarDisplays()
+    }
+    fun actualizarDisplays() {
         Log.d("::::Ar", "actualizarDisplays")
         binding.calcDisplay.setText(calculadora.textDisplay)
         binding.calcDisplayMin.setText(calculadora.textDisplayMin)
         //binding.calcDisplayOp.setText(calculadora.textTipoOperacion)
     }
+
 
 }
 

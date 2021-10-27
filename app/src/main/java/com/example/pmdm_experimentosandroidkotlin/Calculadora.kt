@@ -24,6 +24,7 @@ class Calculadora {
     }
 
     fun pushPunto() {
+        //TODO
     }
 
     fun pushDel() {
@@ -68,6 +69,7 @@ class Calculadora {
     fun pushIgual() {
         var error = false
         resultadoOperacion = null;
+        if(tipoOperacion != ""){
 
         when (tipoOperacion) {
             "+" -> resultadoOperacion = numeroAnterior + numeroActual
@@ -80,19 +82,19 @@ class Calculadora {
                     error = true
             }
         }
-        textDisplayMin = "$numeroAnterior $tipoOperacion $numeroActual = "
+        var aux = "$numeroAnterior $tipoOperacion $numeroActual = "
+        pushClear()
         if (error) {
-            pushClear()
-            textDisplay = "---ERROR---"
+            textDisplay = "--- ERROR ---"
         } else {
-            pushClear()
             resultadoOperacion?.let {
                 textDisplay = it.toString()
-                //numeroAnterior = it
             }
-
         }
+        textDisplayMin = aux
+
         Log.d("::::Ar", "pushIgual() -> numeroActual $numeroActual numeroAnterior: $numeroAnterior  resultadoOperacion $resultadoOperacion")
+        }
 
     }
 }

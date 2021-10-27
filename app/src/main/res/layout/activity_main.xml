@@ -67,4 +67,11 @@
         app:layout_constraintStart_toEndOf="@+id/textoContador"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="1dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
