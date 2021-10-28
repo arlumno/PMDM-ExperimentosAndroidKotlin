@@ -30,45 +30,25 @@ class CalculadoraActivity : AppCompatActivity() {
         actualizarDisplays()
 
         // botones de 0 al 9
-        binding.calc0.setOnClickListener {
-            pushButton(0)
-        }
+        binding.calc0.setOnClickListener { pushButton(0) }
 
-        binding.calc1.setOnClickListener {
-            pushButton(1)
-        }
+        binding.calc1.setOnClickListener { pushButton(1) }
 
-        binding.calc2.setOnClickListener {
-            pushButton(2)
-        }
+        binding.calc2.setOnClickListener { pushButton(2) }
 
-        binding.calc3.setOnClickListener {
-            pushButton(3)
-        }
+        binding.calc3.setOnClickListener { pushButton(3) }
 
-        binding.calc4.setOnClickListener {
-            pushButton(4)
-        }
+        binding.calc4.setOnClickListener { pushButton(4) }
 
-        binding.calc5.setOnClickListener {
-            pushButton(5)
-        }
+        binding.calc5.setOnClickListener { pushButton(5) }
 
-        binding.calc6.setOnClickListener {
-            pushButton(6)
-        }
+        binding.calc6.setOnClickListener { pushButton(6) }
 
-        binding.calc7.setOnClickListener {
-            pushButton(7)
-        }
+        binding.calc7.setOnClickListener { pushButton(7) }
 
-        binding.calc8.setOnClickListener {
-            pushButton(8)
-        }
+        binding.calc8.setOnClickListener { pushButton(8) }
 
-        binding.calc9.setOnClickListener {
-            pushButton(9)
-        }
+        binding.calc9.setOnClickListener { pushButton(9) }
 
         // operaciones
         binding.calcSumar.setOnClickListener {
@@ -109,19 +89,21 @@ class CalculadoraActivity : AppCompatActivity() {
                 Toast.LENGTH_SHORT
             ).show()
         }
-        binding.calcSalir.setOnClickListener{
+        binding.irMain.setOnClickListener {
             val intent = Intent(
-                this@CalculadoraActivity,  // https://kotlinlang.org/docs/this-expressions.html#qualified
+                this,  // https://kotlinlang.org/docs/this-expressions.html#qualified
                 MainActivity::class.java
             )
             startActivity(intent)
         }
 
     }
-    fun pushButton(numero: Int){
+
+    fun pushButton(numero: Int) {
         calculadora.pushNumero(numero)
         actualizarDisplays()
     }
+
     fun actualizarDisplays() {
         Log.d("::::Ar", "actualizarDisplays")
         binding.calcDisplay.setText(calculadora.textDisplay)

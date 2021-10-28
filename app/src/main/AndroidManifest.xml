@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PMDMExperimentosAndroidKotlin">
         <activity
+            android:name=".ContadoresActivity"
+            android:exported="false" />
+        <activity
             android:name=".CalculadoraActivity"
             android:exported="true" />
         <activity

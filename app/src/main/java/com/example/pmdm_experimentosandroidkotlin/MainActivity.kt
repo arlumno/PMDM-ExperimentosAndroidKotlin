@@ -5,38 +5,67 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
+import android.widget.Toast
+import com.example.pmdm_experimentosandroidkotlin.databinding.ActivityCalculadoraBinding
+import com.example.pmdm_experimentosandroidkotlin.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
+
+
+    var countClicker = 0
+    lateinit var clicker : TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
-        // *** Inicio Contador
-        var contador:Int = 0
-        val botonSumar = findViewById<Button>(R.id.botonSumar)
-        val botonRestar = findViewById<Button>(R.id.botonRestar)
-        val textoContador = findViewById<EditText>(R.id.textoContador)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+// agregar varios onclickEvent.
+// aplicar estilo desde codigo
 
-        botonSumar.setOnClickListener {
-            contador++
-            textoContador.setText(contador.toString())
+        clicker = TextView(
+            this,
+            null,
+            R.style.clickerStyle,
+            R.style.clickerStyle
+        ) // https://www.py4u.net/discuss/608353
+        //clicker.textSize = 30f
+        //clicker.setTextAppearance(R.style.clickerStyle)
+        clicker.setText(countClicker.toString())
+
+        // clicker.setBackgroundResource(R.style.clickerStyle)
+        binding.root.addView(clicker)
+        binding.root.setOnClickListener {
+          contadorGeneral()
         }
 
-        botonRestar.setOnClickListener {
-            contador--
-            textoContador.setText(contador.toString())
-        }
-        // *** Fin Contador
-        // *** Inicio Calculadora con layout
 
-        val calculadora = findViewById<Button>(R.id.calculadora)
-        calculadora.setOnClickListener{
+        binding.irCalculadora.setOnClickListener {
             val intent = Intent(
-                this@MainActivity,  // https://kotlinlang.org/docs/this-expressions.html#qualified
+                this,
                 CalculadoraActivity::class.java
             )
             startActivity(intent)
         }
+
+        binding.irContadores.setOnClickListener {
+            val intent = Intent(
+                this,
+                ContadoresActivity::class.java
+            )
+            startActivity(intent)
+        }
+//        binding.irContadores.setOnClickListener {
+//            Toast.makeText(this, "aqui", Toast.LENGTH_LONG).show()
+//            contadorGeneral()
+//        }
     }
 
+    private fun contadorGeneral() {
+        countClicker++
+        clicker.setText(countClicker.toString())
+    }
 }

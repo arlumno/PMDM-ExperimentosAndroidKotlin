@@ -25,4 +25,16 @@
         <item name="android:orientation">vertical</item>
         <item name="android:layout_weight">1</item>
     </style>
+
+    <style name="clickerStyle">
+        <item name="android:layout_width">220dp</item>
+        <item name="android:layout_height">220dp</item>
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:layout_alignParentTop">true</item>
+
+        <item name="android:layout_gravity">right|top</item>
+        <item name="android:textSize">95sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#4CAF50</item>
+    </style>
 </resources>
