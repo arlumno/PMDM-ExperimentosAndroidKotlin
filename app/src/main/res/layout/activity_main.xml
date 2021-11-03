@@ -30,11 +30,21 @@
         app:layout_constraintBottom_toTopOf="@+id/irCalculadora"
         app:layout_constraintEnd_toEndOf="@+id/irCalculadora" />
 
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="409dp"
+    <Button
+        android:id="@+id/botonTest"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="1dp" />
-
+        android:text="NO Pulsar"
+        app:layout_constraintBottom_toTopOf="@+id/irContadores"
+        app:layout_constraintEnd_toEndOf="@+id/irCalculadora" />
+<!--    <LinearLayout-->
+<!--        style="@style/clickerLinearLayout"-->
+<!--        android:orientation="horizontal"-->
+<!--        >-->
+<!--    <TextView-->
+<!--        style="@style/clickerStyle"-->
+<!--        android:text="Clicker"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+<!--    </LinearLayout>-->
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,19 +3,14 @@ package com.example.pmdm_experimentosandroidkotlin
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
-import com.example.pmdm_experimentosandroidkotlin.databinding.ActivityCalculadoraBinding
+import android.widget.*
 import com.example.pmdm_experimentosandroidkotlin.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-
-    var countClicker = 0
+    lateinit var clickerLinearLayout : LinearLayout
     lateinit var clicker : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,21 +18,17 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-// agregar varios onclickEvent.
-// aplicar estilo desde codigo
+// ----agregar varios onclickEvent.
+// aplicar estilo desde código
+// cambiar posicion desde código
+        clickerLinearLayout = LinearLayout(this, null, R.style.clickerLinearLayout,R.style.clickerLinearLayout)
+        clicker = TextView(this, null, R.style.clickerStyle, R.style.clickerStyle) // https://www.py4u.net/discuss/608353
+        clicker.setText(objetoDatos.clicks.toString())
 
-        clicker = TextView(
-            this,
-            null,
-            R.style.clickerStyle,
-            R.style.clickerStyle
-        ) // https://www.py4u.net/discuss/608353
-        //clicker.textSize = 30f
-        //clicker.setTextAppearance(R.style.clickerStyle)
-        clicker.setText(countClicker.toString())
+        clickerLinearLayout.addView(clicker)
 
         // clicker.setBackgroundResource(R.style.clickerStyle)
-        binding.root.addView(clicker)
+        binding.root.addView(clickerLinearLayout)
         binding.root.setOnClickListener {
           contadorGeneral()
         }
@@ -58,14 +49,25 @@ class MainActivity : AppCompatActivity() {
             )
             startActivity(intent)
         }
-//        binding.irContadores.setOnClickListener {
-//            Toast.makeText(this, "aqui", Toast.LENGTH_LONG).show()
-//            contadorGeneral()
-//        }
+        binding.botonTest.setOnClickListener {
+            binding.botonTest.setText("alehop!")
+            it.animate().rotation(3600F).setDuration(3000).withEndAction {
+                binding.botonTest.setText("tachan!!!")
+                binding.botonTest.setRotation(0F)
+                mostrarToast("10 - 9 - 10")
+
+                binding.botonTest.setOnClickListener {
+                    mostrarToast("No puedo.. Necesito descansar..")
+                }
+            };
+
+            contadorGeneral()
+        }
     }
 
     private fun contadorGeneral() {
-        countClicker++
-        clicker.setText(countClicker.toString())
+        objetoDatos.clicks++
+        mostrarToast(objetoDatos.clicks.toString())
+        clicker.setText(objetoDatos.clicks.toString())
     }
 }

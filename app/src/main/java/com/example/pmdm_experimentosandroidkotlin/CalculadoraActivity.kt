@@ -108,7 +108,6 @@ class CalculadoraActivity : AppCompatActivity() {
         Log.d("::::Ar", "actualizarDisplays")
         binding.calcDisplay.setText(calculadora.textDisplay)
         binding.calcDisplayMin.setText(calculadora.textDisplayMin)
-        //binding.calcDisplayOp.setText(calculadora.textTipoOperacion)
     }
 
 
