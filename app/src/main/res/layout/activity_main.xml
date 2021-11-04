@@ -37,10 +37,34 @@
         android:text="NO Pulsar"
         app:layout_constraintBottom_toTopOf="@+id/irContadores"
         app:layout_constraintEnd_toEndOf="@+id/irCalculadora" />
-<!--    <LinearLayout-->
-<!--        style="@style/clickerLinearLayout"-->
-<!--        android:orientation="horizontal"-->
-<!--        >-->
+
+    <Button
+        android:id="@+id/botonPrueba"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="248dp"
+        android:text="Prueba"
+        app:layout_constraintBottom_toBottomOf="@+id/irCalculadora"
+        app:layout_constraintEnd_toEndOf="@+id/irCalculadora"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvPrueba"
+        style="@style/botonCalculadora"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="Prueba"
+        app:layout_constraintBottom_toTopOf="@+id/botonPrueba"
+        app:layout_constraintEnd_toEndOf="@+id/botonPrueba"
+        app:layout_constraintHorizontal_bias="0.541"
+        app:layout_constraintStart_toStartOf="@+id/botonPrueba" />
+
+    <LinearLayout
+        android:id="@+id/clickerLinearLayout"
+        style="@style/clickerLinearLayout"
+        />
 <!--    <TextView-->
 <!--        style="@style/clickerStyle"-->
 <!--        android:text="Clicker"-->

@@ -1,5 +1,7 @@
 package com.example.pmdm_experimentosandroidkotlin
 
+
+import com.example.pmdm_experimentosandroidkotlin.ClickerTracker
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,7 +12,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    lateinit var clickerLinearLayout : LinearLayout
+  //  lateinit var clickerLinearLayout : LinearLayout
     lateinit var clicker : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,17 +23,26 @@ class MainActivity : AppCompatActivity() {
 // ----agregar varios onclickEvent.
 // aplicar estilo desde código
 // cambiar posicion desde código
-        clickerLinearLayout = LinearLayout(this, null, R.style.clickerLinearLayout,R.style.clickerLinearLayout)
-        clicker = TextView(this, null, R.style.clickerStyle, R.style.clickerStyle) // https://www.py4u.net/discuss/608353
-        clicker.setText(objetoDatos.clicks.toString())
+       // clickerLinearLayout = LinearLayout(this, null, R.style.clickerLinearLayout,R.style.clickerLinearLayout)
+//        clicker = TextView(this, null, R.style.clickerStyle, R.style.clickerStyle) // https://www.py4u.net/discuss/608353
+//        clicker.setText(objetoDatos.clicks.toString())
+//        binding.clickerLinearLayout.addView(clicker)
+//
+        val clickerTracker = ClickerTracker();
+        clickerTracker.start(this, binding.clickerLinearLayout);
 
-        clickerLinearLayout.addView(clicker)
+//        binding.root.setOnClickListener {
+//            clickerTracker.track(this, it)
+//        }
 
-        // clicker.setBackgroundResource(R.style.clickerStyle)
-        binding.root.addView(clickerLinearLayout)
-        binding.root.setOnClickListener {
-          contadorGeneral()
+        binding.tvPrueba.setOnClickListener {
+            clickerTracker.track(this, it)
         }
+
+        binding.botonPrueba.setOnClickListener {
+            clickerTracker.track(this, it)
+        }
+
 
 
         binding.irCalculadora.setOnClickListener {
@@ -61,13 +72,13 @@ class MainActivity : AppCompatActivity() {
                 }
             };
 
-            contadorGeneral()
+            clickerTracker.track(this, it)
         }
     }
 
-    private fun contadorGeneral() {
-        objetoDatos.clicks++
-        mostrarToast(objetoDatos.clicks.toString())
-        clicker.setText(objetoDatos.clicks.toString())
-    }
+//    private fun track() {
+//        objetoDatos.clicks++
+//        mostrarToast(objetoDatos.clicks.toString())
+//        clicker.setText(objetoDatos.clicks.toString())
+//    }
 }

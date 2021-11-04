@@ -8,7 +8,10 @@
     android:padding="10dp"
     tools:context=".CalculadoraActivity">
 
-
+    <LinearLayout
+        android:id="@+id/clickerLinearLayout"
+        style="@style/clickerLinearLayout"
+        />
     <TextView
         android:id="@+id/calcDisplayMin"
         android:layout_width="match_parent"
