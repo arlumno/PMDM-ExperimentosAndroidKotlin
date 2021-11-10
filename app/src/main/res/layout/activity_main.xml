@@ -39,6 +39,14 @@
         app:layout_constraintEnd_toEndOf="@+id/irCalculadora" />
 
     <Button
+        android:id="@+id/botonLog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ver Log"
+        app:layout_constraintEnd_toEndOf="@+id/irCalculadora"
+        app:layout_constraintTop_toBottomOf="@+id/irCalculadora" />
+
+    <Button
         android:id="@+id/botonPrueba"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -60,12 +68,23 @@
         app:layout_constraintEnd_toEndOf="@+id/botonPrueba"
         app:layout_constraintHorizontal_bias="0.541"
         app:layout_constraintStart_toStartOf="@+id/botonPrueba" />
-
     <LinearLayout
         android:id="@+id/clickerLinearLayout"
         style="@style/clickerLinearLayout"
         />
-<!--    <TextView-->
+
+    <ImageView
+        android:id="@+id/imgC3po"
+        android:layout_width="170dp"
+        android:layout_height="456dp"
+        android:layout_marginStart="40dp"
+        app:layout_constraintBottom_toTopOf="@+id/tvPrueba"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.488"
+        app:srcCompat="@drawable/pngwing_com" />
+
+    <!--    <TextView-->
 <!--        style="@style/clickerStyle"-->
 <!--        android:text="Clicker"-->
 <!--        app:layout_constraintEnd_toEndOf="parent"-->

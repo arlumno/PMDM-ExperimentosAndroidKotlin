@@ -10,7 +10,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class ClickerTracker {
     var clicks: Int = 0
-    private var log:String = "*"
+    private var log:String = ""
     lateinit var clicker: TextView
     //clicker.setText(objetodatos.clicks.toString())
 
@@ -31,21 +31,21 @@ class ClickerTracker {
 
         log(v)
         //act.mostrarToast(log)
+        //MaterialAlertDialogBuilder(act).setMessage(log).show()
+    }
+
+    fun mostrarLog(act: Activity){
         MaterialAlertDialogBuilder(act).setMessage(log).show()
     }
 
     fun log(v: View){
         when(v){
-            is Button -> log += "Botón: " + v.getText();
-           // is TextView -> log += "TextView: " + v.getText()
-//            else -> log += "?? " + v.resources.getResourceName(v.id)
-            else -> log += "?? " + v.getResources().getResourceName(v.getId())
+            is Button -> log += "Botón: "
+           is TextView -> log += "TextView:"
+            else -> log += (v::class.java)
         }
-        log = ""
-        log +=  "Id Name: " + v.getResources().getResourceEntryName(v.getId()) + "\n"
-        log +=  "Package: " + v.getResources().getResourcePackageName(v.getId()) + "\n"
-
+        log +=  " Id: " + v.getResources().getResourceEntryName(v.getId())
+        //log +=  "Package: " + v.getResources().getResourcePackageName(v.getId()) + "\n"
         log += "\n"
-
     }
 }

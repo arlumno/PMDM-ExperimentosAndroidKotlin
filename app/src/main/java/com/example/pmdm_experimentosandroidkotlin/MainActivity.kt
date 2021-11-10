@@ -12,28 +12,16 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-  //  lateinit var clickerLinearLayout : LinearLayout
-    lateinit var clicker : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-// ----agregar varios onclickEvent.
-// aplicar estilo desde código
-// cambiar posicion desde código
-       // clickerLinearLayout = LinearLayout(this, null, R.style.clickerLinearLayout,R.style.clickerLinearLayout)
-//        clicker = TextView(this, null, R.style.clickerStyle, R.style.clickerStyle) // https://www.py4u.net/discuss/608353
-//        clicker.setText(objetoDatos.clicks.toString())
-//        binding.clickerLinearLayout.addView(clicker)
-//
+
         val clickerTracker = ClickerTracker();
         clickerTracker.start(this, binding.clickerLinearLayout);
 
-//        binding.root.setOnClickListener {
-//            clickerTracker.track(this, it)
-//        }
 
         binding.tvPrueba.setOnClickListener {
             clickerTracker.track(this, it)
@@ -43,9 +31,9 @@ class MainActivity : AppCompatActivity() {
             clickerTracker.track(this, it)
         }
 
-
-
         binding.irCalculadora.setOnClickListener {
+            clickerTracker.track(this, it)
+
             val intent = Intent(
                 this,
                 CalculadoraActivity::class.java
@@ -54,13 +42,21 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.irContadores.setOnClickListener {
+            clickerTracker.track(this, it)
             val intent = Intent(
                 this,
                 ContadoresActivity::class.java
             )
             startActivity(intent)
         }
+
+        binding.botonLog.setOnClickListener{
+            clickerTracker.track(this, it)
+            clickerTracker.mostrarLog(this)
+        }
+
         binding.botonTest.setOnClickListener {
+            clickerTracker.track(this, it)
             binding.botonTest.setText("alehop!")
             it.animate().rotation(3600F).setDuration(3000).withEndAction {
                 binding.botonTest.setText("tachan!!!")
@@ -70,15 +66,12 @@ class MainActivity : AppCompatActivity() {
                 binding.botonTest.setOnClickListener {
                     mostrarToast("No puedo.. Necesito descansar..")
                 }
-            };
 
-            clickerTracker.track(this, it)
+            }
+            binding.imgC3po.animate().rotation(-3600F).setDuration(3000).withEndAction {
+                binding.botonTest.setRotation(0F)
+            }
         }
     }
 
-//    private fun track() {
-//        objetoDatos.clicks++
-//        mostrarToast(objetoDatos.clicks.toString())
-//        clicker.setText(objetoDatos.clicks.toString())
-//    }
 }
