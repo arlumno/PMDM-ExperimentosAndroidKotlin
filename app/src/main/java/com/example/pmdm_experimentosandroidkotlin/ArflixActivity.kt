@@ -2,7 +2,7 @@ package com.example.pmdm_experimentosandroidkotlin
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.pmdm_experimentosandroidkotlin.ClasesArflix.elemento
+import com.example.pmdm_experimentosandroidkotlin.Arflix.Elemento
 import com.example.pmdm_experimentosandroidkotlin.databinding.ActivityArflixBinding
 
 class ArflixActivity : AppCompatActivity() {
@@ -13,11 +13,11 @@ class ArflixActivity : AppCompatActivity() {
         binding= ActivityArflixBinding.inflate(layoutInflater);
         setContentView(binding.root)
     }
-    var listaElementos = listOf<elemento>(
-                            elemento("cosa",2),
-                            elemento("cosita",3),
-                            elemento("raton",9),
-                            elemento("botella",12)
+    var listaElementos = listOf<Elemento>(
+                            Elemento("cosa",2),
+                            Elemento("cosita",3),
+                            Elemento("raton",9),
+                            Elemento("botella",12)
                         )
     
 }
