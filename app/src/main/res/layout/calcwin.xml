@@ -183,25 +183,13 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/botonCambiarLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="12dp"
-        android:text="ModoPro"
-        android:textAllCaps="false"
-        android:textSize="13sp"
-        app:layout_constraintEnd_toStartOf="@id/irMain"
-
-        app:layout_constraintTop_toTopOf="@id/irMain" />
-
-    <Button
         android:id="@+id/irMain"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="130dp"
+        android:layout_height="65dp"
         android:layout_marginEnd="8dp"
-        android:text="Home"
-        android:textSize="13sp"
+        android:text="Volver"
         android:textAlignment="center"
+        android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline3" />

@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/desierto"
     tools:context=".MainActivity">
-
 
 
     <!-- Añadido un botón para asignarles el evento de cambio
@@ -47,7 +47,7 @@
         app:layout_constraintEnd_toEndOf="@+id/irCalculadora" />
 
     <Button
-        android:id="@+id/botonTest"
+        android:id="@+id/botonNoTocar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="NO Pulsar"
@@ -59,7 +59,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Ver Log"
-        app:layout_constraintBottom_toTopOf="@+id/botonTest"
+        app:layout_constraintBottom_toTopOf="@+id/botonNoTocar"
         app:layout_constraintEnd_toEndOf="@+id/irCalculadora" />
 
     <Button
@@ -84,26 +84,40 @@
         app:layout_constraintEnd_toEndOf="@+id/botonPrueba"
         app:layout_constraintHorizontal_bias="0.541"
         app:layout_constraintStart_toStartOf="@+id/botonPrueba" />
+
     <LinearLayout
         android:id="@+id/clickerLinearLayout"
-        style="@style/clickerLinearLayout"
-        />
+        style="@style/clickerLinearLayout" />
 
     <ImageView
         android:id="@+id/imgC3po"
-        android:layout_width="129dp"
-        android:layout_height="343dp"
-        android:layout_marginStart="52dp"
+        android:layout_width="155dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:adjustViewBounds="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.399"
         app:srcCompat="@drawable/pngwing_com" />
 
+    <ImageView
+        android:id="@+id/imgR2d2"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="-140dp"
+        android:adjustViewBounds="true"
+        android:scaleX="-1"
+        app:layout_constraintBottom_toBottomOf="@+id/imgC3po"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/r2d2" />
+
     <!--    <TextView-->
-<!--        style="@style/clickerStyle"-->
-<!--        android:text="Clicker"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
-<!--    </LinearLayout>-->
+    <!--        style="@style/clickerStyle"-->
+    <!--        android:text="Clicker"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent" />-->
+    <!--    </LinearLayout>-->
 </androidx.constraintlayout.widget.ConstraintLayout>

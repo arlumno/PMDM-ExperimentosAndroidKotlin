@@ -4,24 +4,21 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
 import com.example.pmdm_experimentosandroidkotlin.databinding.ActivityCalculadoraBinding
-import kotlin.math.log
+import com.example.pmdm_experimentosandroidkotlin.databinding.CalcwinBinding
 
 class CalculadoraActivity : AppCompatActivity() {
 
+    //private lateinit var binding: ActivityCalculadoraBinding
     private lateinit var binding: ActivityCalculadoraBinding
-
+    private lateinit var bindingCalcWin: CalcwinBinding
     val calculadora = Calculadora();
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityCalculadoraBinding.inflate(layoutInflater)
-
+        bindingCalcWin = CalcwinBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
 
@@ -31,23 +28,14 @@ class CalculadoraActivity : AppCompatActivity() {
 
         // botones de 0 al 9
         binding.calc0.setOnClickListener { pushButton(0) }
-
         binding.calc1.setOnClickListener { pushButton(1) }
-
         binding.calc2.setOnClickListener { pushButton(2) }
-
         binding.calc3.setOnClickListener { pushButton(3) }
-
         binding.calc4.setOnClickListener { pushButton(4) }
-
         binding.calc5.setOnClickListener { pushButton(5) }
-
         binding.calc6.setOnClickListener { pushButton(6) }
-
         binding.calc7.setOnClickListener { pushButton(7) }
-
         binding.calc8.setOnClickListener { pushButton(8) }
-
         binding.calc9.setOnClickListener { pushButton(9) }
 
         // operaciones
@@ -89,7 +77,20 @@ class CalculadoraActivity : AppCompatActivity() {
                 Toast.LENGTH_SHORT
             ).show()
         }
+        binding.botonCambiarLayout.setOnClickListener{
+            //val viewRoot = LayoutInflater.from(this).inflate(R.layout.calculadora2,null,R)
+            //binding = ActivityCalculadoraBinding.bind(viewRoot);
+            setContentView(bindingCalcWin.root)
+        }
+
         binding.irMain.setOnClickListener {
+            val intent = Intent(
+                this,  // https://kotlinlang.org/docs/this-expressions.html#qualified
+                MainActivity::class.java
+            )
+            startActivity(intent)
+        }
+        bindingCalcWin.irMain.setOnClickListener {
             val intent = Intent(
                 this,  // https://kotlinlang.org/docs/this-expressions.html#qualified
                 MainActivity::class.java
