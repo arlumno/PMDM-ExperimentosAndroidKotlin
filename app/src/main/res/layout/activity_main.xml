@@ -70,7 +70,7 @@
         android:text="Prueba"
         app:layout_constraintBottom_toBottomOf="@+id/irCalculadora"
         app:layout_constraintEnd_toEndOf="@+id/irCalculadora"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.29"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -82,12 +82,39 @@
         android:text="Prueba"
         app:layout_constraintBottom_toTopOf="@+id/botonPrueba"
         app:layout_constraintEnd_toEndOf="@+id/botonPrueba"
-        app:layout_constraintHorizontal_bias="0.541"
         app:layout_constraintStart_toStartOf="@+id/botonPrueba" />
+
+    <TextView
+        android:id="@+id/infoSup"
+        android:layout_width="0dp"
+        android:layout_height="18dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="18dp"
+        android:textColor="@color/white"
+        android:elevation="2dp"
+        tools:text="texto de ejemplo " />
+
+    <TextView
+        android:id="@+id/fraseIdioma"
+        android:text="@string/fraseProbarTexto"
+        android:layout_width="0dp"
+        android:layout_height="18dp"
+        android:elevation="2dp"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="texto texto texto"
+        />
 
     <LinearLayout
         android:id="@+id/clickerLinearLayout"
-        style="@style/clickerLinearLayout" />
+        style="@style/clickerLinearLayout"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp"/>
 
     <ImageView
         android:id="@+id/imgC3po"
@@ -99,6 +126,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.399"
+        android:elevation="-1dp"
         app:srcCompat="@drawable/pngwing_com" />
 
     <ImageView
@@ -113,6 +141,39 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/r2d2" />
+
+    <ImageView
+        android:id="@+id/destroyer"
+        android:layout_width="200dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="10dp"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/imperial_destroyer" />
+
+    <ImageView
+        android:id="@+id/prismaticos"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        android:elevation="5dp"
+        app:srcCompat="@drawable/prismaticos"
+        android:visibility="gone"
+
+        tools:layout_editor_absoluteX="0dp" />
+    <Button
+        android:id="@+id/botonPrismaticos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="Explorar"
+        app:layout_constraintBottom_toBottomOf="@+id/irCalculadora"
+        app:layout_constraintStart_toEndOf="@+id/botonPrueba" />
 
     <!--    <TextView-->
     <!--        style="@style/clickerStyle"-->

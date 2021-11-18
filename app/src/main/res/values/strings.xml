@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">PMDM-ExperimentosAndroidKotlin</string>
+    <string name="fraseProbarTexto">En casa de herrero, cuchillo de palo</string>
 </resources>

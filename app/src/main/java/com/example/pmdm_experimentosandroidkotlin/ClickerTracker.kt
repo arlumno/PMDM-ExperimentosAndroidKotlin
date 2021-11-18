@@ -50,10 +50,10 @@ class ClickerTracker {
         log +=  " Id: " + v.getResources().getResourceEntryName(v.getId())
         //log +=  "Package: " + v.getResources().getResourcePackageName(v.getId()) + "\n"
         //log += "\n"
-        val archivo = File("com/example/pmdm_experimentosandroidkotlin/archivos/log.txt")
+        val archivo = File("com/example/pmdm_experimentosandroidkotlin/res/archivosRaros/log.txt")
         Log.d(":::Ar", archivo.exists().toString())
         //archivo.appendText("\n $log")
-        //val oS = archivo.printWriter().use { out -> out.println(log) }
+     //   val oS = archivo.printWriter().use { out -> out.println(log) }
 
     }
 }

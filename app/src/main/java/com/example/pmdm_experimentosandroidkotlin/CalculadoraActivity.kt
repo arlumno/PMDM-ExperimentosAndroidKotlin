@@ -88,6 +88,7 @@ class CalculadoraActivity : AppCompatActivity() {
                 this,  // https://kotlinlang.org/docs/this-expressions.html#qualified
                 MainActivity::class.java
             )
+            intent.putExtra("infoSup","Resultado Calculadora: "+binding.calcDisplay.text)
             startActivity(intent)
         }
         bindingCalcWin.irMain.setOnClickListener {

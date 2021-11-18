@@ -6,22 +6,24 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.*
 import com.example.pmdm_experimentosandroidkotlin.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-
+    private var infoSup = "";
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.infoSup.text = getIntent().getStringExtra("infoSup")
 
-        val clickerTracker = ClickerTracker();
-        clickerTracker.start(this, binding.clickerLinearLayout);
+        val clickerTracker = ClickerTracker()
+        clickerTracker.start(this, binding.clickerLinearLayout)
 
 
         binding.tvPrueba.setOnClickListener {
@@ -55,7 +57,16 @@ class MainActivity : AppCompatActivity() {
             clickerTracker.track(this, it)
             clickerTracker.mostrarLog(this)
         }
+        binding.irArflix.setOnClickListener{
+            mostrarToast("Proximamente...")
+        }
+        binding.botonPrismaticos.setOnClickListener{
+            binding.prismaticos.visibility = View.VISIBLE;
+        }
+        binding.prismaticos.setOnClickListener {
+            binding.prismaticos.visibility = View.GONE;
 
+        }
         var iniR2d2: Float? = null
         binding.botonNoTocar.setOnClickListener {
             if(iniR2d2 == null){
@@ -65,8 +76,8 @@ class MainActivity : AppCompatActivity() {
             clickerTracker.track(this, it)
             var movimiento = binding.imgC3po.right - binding.imgR2d2.left - (binding.imgC3po.width / 2)
             Log.d(":::ar", "Movimiento: $movimiento")
-            binding.imgR2d2.animate().translationX(movimiento.toFloat()).setDuration(200).withEndAction{
-                binding.imgR2d2.animate().x((binding.imgR2d2.width * -1).toFloat()) .setDuration(300).withEndAction{
+            binding.imgR2d2.animate().translationX(movimiento.toFloat()).setDuration(500).withEndAction{
+                binding.imgR2d2.animate().x((binding.imgR2d2.width * -1).toFloat()) .setDuration(200).withEndAction{
                     binding.imgR2d2.x = iniR2d2!!
                 }
                 binding.imgC3po.animate().rotation(1800F).setDuration(2000).withEndAction {
